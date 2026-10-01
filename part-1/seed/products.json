@@ -1,0 +1,482 @@
+[
+  {
+    "sku": "AUD-1000",
+    "name": "Compact Headphones",
+    "category": "Audio",
+    "quantity": 0,
+    "price": 147.85,
+    "updated": "2026-07-07"
+  },
+  {
+    "sku": "AUD-1007",
+    "name": "Lite Speaker",
+    "category": "Audio",
+    "quantity": 93,
+    "price": 83.68,
+    "updated": "2026-08-22"
+  },
+  {
+    "sku": "AUD-1014",
+    "name": "Trail Microphone",
+    "category": "Audio",
+    "quantity": 100,
+    "price": 54.1,
+    "updated": "2026-08-25"
+  },
+  {
+    "sku": "AUD-1021",
+    "name": "Folding Soundbar",
+    "category": "Audio",
+    "quantity": 9,
+    "price": 165.07,
+    "updated": "2026-07-16"
+  },
+  {
+    "sku": "KIT-1028",
+    "name": "Pro Kettle",
+    "category": "Kitchen",
+    "quantity": 16,
+    "price": 236.74,
+    "updated": "2026-07-21"
+  },
+  {
+    "sku": "KIT-1035",
+    "name": "Everyday Toaster",
+    "category": "Kitchen",
+    "quantity": 9,
+    "price": 240.77,
+    "updated": "2026-07-16"
+  },
+  {
+    "sku": "KIT-1042",
+    "name": "Quiet Blender",
+    "category": "Kitchen",
+    "quantity": 37,
+    "price": 180.38,
+    "updated": "2026-07-01"
+  },
+  {
+    "sku": "KIT-1049",
+    "name": "Classic Coffee grinder",
+    "category": "Kitchen",
+    "quantity": 41,
+    "price": 18.96,
+    "updated": "2026-08-25"
+  },
+  {
+    "sku": "KIT-1056",
+    "name": "Studio Air fryer",
+    "category": "Kitchen",
+    "quantity": 19,
+    "price": 150.02,
+    "updated": "2026-09-15"
+  },
+  {
+    "sku": "OFF-1063",
+    "name": "Heavy-duty Desk lamp",
+    "category": "Office",
+    "quantity": 98,
+    "price": 199.38,
+    "updated": "2026-07-18"
+  },
+  {
+    "sku": "OFF-1070",
+    "name": "Compact Monitor arm",
+    "category": "Office",
+    "quantity": 31,
+    "price": 11.2,
+    "updated": "2026-07-25"
+  },
+  {
+    "sku": "OFF-1077",
+    "name": "Lite Keyboard",
+    "category": "Office",
+    "quantity": 53,
+    "price": 103.38,
+    "updated": "2026-08-10"
+  },
+  {
+    "sku": "OFF-1084",
+    "name": "Trail Mouse",
+    "category": "Office",
+    "quantity": 67,
+    "price": 116.02,
+    "updated": "2026-08-08"
+  },
+  {
+    "sku": "OFF-1091",
+    "name": "Folding Notebook",
+    "category": "Office",
+    "quantity": 38,
+    "price": 17.96,
+    "updated": "2026-07-06"
+  },
+  {
+    "sku": "OFF-1098",
+    "name": "Pro Chair",
+    "category": "Office",
+    "quantity": 8,
+    "price": 217.13,
+    "updated": "2026-08-26"
+  },
+  {
+    "sku": "OUT-1105",
+    "name": "Everyday Tent",
+    "category": "Outdoors",
+    "quantity": 4,
+    "price": 40.39,
+    "updated": "2026-09-10"
+  },
+  {
+    "sku": "OUT-1112",
+    "name": "Quiet Sleeping bag",
+    "category": "Outdoors",
+    "quantity": 22,
+    "price": 133.05,
+    "updated": "2026-09-06"
+  },
+  {
+    "sku": "OUT-1119",
+    "name": "Classic Head torch",
+    "category": "Outdoors",
+    "quantity": 11,
+    "price": 67.66,
+    "updated": "2026-08-08"
+  },
+  {
+    "sku": "OUT-1126",
+    "name": "Studio Water bottle",
+    "category": "Outdoors",
+    "quantity": 6,
+    "price": 177.51,
+    "updated": "2026-08-13"
+  },
+  {
+    "sku": "OUT-1133",
+    "name": "Heavy-duty Camping stove",
+    "category": "Outdoors",
+    "quantity": 99,
+    "price": 179.83,
+    "updated": "2026-08-05"
+  },
+  {
+    "sku": "TOO-1140",
+    "name": "Compact Drill",
+    "category": "Tools",
+    "quantity": 85,
+    "price": 229.55,
+    "updated": "2026-09-03"
+  },
+  {
+    "sku": "TOO-1147",
+    "name": "Lite Screwdriver set",
+    "category": "Tools",
+    "quantity": 42,
+    "price": 175.06,
+    "updated": "2026-07-04"
+  },
+  {
+    "sku": "TOO-1154",
+    "name": "Trail Spirit level",
+    "category": "Tools",
+    "quantity": 6,
+    "price": 193.42,
+    "updated": "2026-08-05"
+  },
+  {
+    "sku": "TOO-1161",
+    "name": "Folding Tape measure",
+    "category": "Tools",
+    "quantity": 33,
+    "price": 221.49,
+    "updated": "2026-08-25"
+  },
+  {
+    "sku": "TOO-1168",
+    "name": "Pro Hammer",
+    "category": "Tools",
+    "quantity": 92,
+    "price": 166.16,
+    "updated": "2026-08-12"
+  },
+  {
+    "sku": "AUD-1175",
+    "name": "Trail Headphones",
+    "category": "Audio",
+    "quantity": 105,
+    "price": 19.14,
+    "updated": "2026-08-18"
+  },
+  {
+    "sku": "AUD-1182",
+    "name": "Folding Speaker",
+    "category": "Audio",
+    "quantity": 94,
+    "price": 76.58,
+    "updated": "2026-09-04"
+  },
+  {
+    "sku": "AUD-1189",
+    "name": "Pro Microphone",
+    "category": "Audio",
+    "quantity": 47,
+    "price": 67.04,
+    "updated": "2026-07-16"
+  },
+  {
+    "sku": "AUD-1196",
+    "name": "Everyday Soundbar",
+    "category": "Audio",
+    "quantity": 53,
+    "price": 5.09,
+    "updated": "2026-09-07"
+  },
+  {
+    "sku": "KIT-1203",
+    "name": "Quiet Kettle",
+    "category": "Kitchen",
+    "quantity": 22,
+    "price": 217.64,
+    "updated": "2026-09-18"
+  },
+  {
+    "sku": "KIT-1210",
+    "name": "Classic Toaster",
+    "category": "Kitchen",
+    "quantity": 34,
+    "price": 56.74,
+    "updated": "2026-08-08"
+  },
+  {
+    "sku": "KIT-1217",
+    "name": "Studio Blender",
+    "category": "Kitchen",
+    "quantity": 90,
+    "price": 190.86,
+    "updated": "2026-09-08"
+  },
+  {
+    "sku": "KIT-1224",
+    "name": "Heavy-duty Coffee grinder",
+    "category": "Kitchen",
+    "quantity": 101,
+    "price": 61,
+    "updated": "2026-09-20"
+  },
+  {
+    "sku": "KIT-1231",
+    "name": "Compact Air fryer",
+    "category": "Kitchen",
+    "quantity": 55,
+    "price": 12.89,
+    "updated": "2026-07-15"
+  },
+  {
+    "sku": "OFF-1238",
+    "name": "Lite Desk lamp",
+    "category": "Office",
+    "quantity": 80,
+    "price": 98.05,
+    "updated": "2026-08-16"
+  },
+  {
+    "sku": "OFF-1245",
+    "name": "Trail Monitor arm",
+    "category": "Office",
+    "quantity": 0,
+    "price": 20.81,
+    "updated": "2026-07-16"
+  },
+  {
+    "sku": "OFF-1252",
+    "name": "Folding Keyboard",
+    "category": "Office",
+    "quantity": 39,
+    "price": 21.6,
+    "updated": "2026-07-25"
+  },
+  {
+    "sku": "OFF-1259",
+    "name": "Pro Mouse",
+    "category": "Office",
+    "quantity": 111,
+    "price": 132.01,
+    "updated": "2026-08-05"
+  },
+  {
+    "sku": "OFF-1266",
+    "name": "Everyday Notebook",
+    "category": "Office",
+    "quantity": 66,
+    "price": 215.73,
+    "updated": "2026-08-21"
+  },
+  {
+    "sku": "OFF-1273",
+    "name": "Quiet Chair",
+    "category": "Office",
+    "quantity": 66,
+    "price": 38.59,
+    "updated": "2026-07-04"
+  },
+  {
+    "sku": "OUT-1280",
+    "name": "Classic Tent",
+    "category": "Outdoors",
+    "quantity": 50,
+    "price": 99.43,
+    "updated": "2026-08-17"
+  },
+  {
+    "sku": "OUT-1287",
+    "name": "Studio Sleeping bag",
+    "category": "Outdoors",
+    "quantity": 6,
+    "price": 217.81,
+    "updated": "2026-07-10"
+  },
+  {
+    "sku": "OUT-1294",
+    "name": "Heavy-duty Head torch",
+    "category": "Outdoors",
+    "quantity": 106,
+    "price": 167.87,
+    "updated": "2026-09-20"
+  },
+  {
+    "sku": "OUT-1301",
+    "name": "Compact Water bottle",
+    "category": "Outdoors",
+    "quantity": 77,
+    "price": 183.46,
+    "updated": "2026-07-18"
+  },
+  {
+    "sku": "OUT-1308",
+    "name": "Lite Camping stove",
+    "category": "Outdoors",
+    "quantity": 101,
+    "price": 79.37,
+    "updated": "2026-07-07"
+  },
+  {
+    "sku": "TOO-1315",
+    "name": "Trail Drill",
+    "category": "Tools",
+    "quantity": 114,
+    "price": 207.8,
+    "updated": "2026-08-04"
+  },
+  {
+    "sku": "TOO-1322",
+    "name": "Folding Screwdriver set",
+    "category": "Tools",
+    "quantity": 64,
+    "price": 167.08,
+    "updated": "2026-07-10"
+  },
+  {
+    "sku": "TOO-1329",
+    "name": "Pro Spirit level",
+    "category": "Tools",
+    "quantity": 18,
+    "price": 6.86,
+    "updated": "2026-09-12"
+  },
+  {
+    "sku": "TOO-1336",
+    "name": "Everyday Tape measure",
+    "category": "Tools",
+    "quantity": 57,
+    "price": 168.54,
+    "updated": "2026-09-24"
+  },
+  {
+    "sku": "TOO-1343",
+    "name": "Quiet Hammer",
+    "category": "Tools",
+    "quantity": 18,
+    "price": 144.39,
+    "updated": "2026-09-23"
+  },
+  {
+    "sku": "AUD-1350",
+    "name": "Pro Headphones",
+    "category": "Audio",
+    "quantity": 4,
+    "price": 85,
+    "updated": "2026-09-08"
+  },
+  {
+    "sku": "AUD-1357",
+    "name": "Everyday Speaker",
+    "category": "Audio",
+    "quantity": 37,
+    "price": 103.86,
+    "updated": "2026-08-07"
+  },
+  {
+    "sku": "AUD-1364",
+    "name": "Quiet Microphone",
+    "category": "Audio",
+    "quantity": 74,
+    "price": 200.37,
+    "updated": "2026-07-09"
+  },
+  {
+    "sku": "AUD-1371",
+    "name": "Classic Soundbar",
+    "category": "Audio",
+    "quantity": 23,
+    "price": 60.67,
+    "updated": "2026-07-27"
+  },
+  {
+    "sku": "KIT-1378",
+    "name": "Studio Kettle",
+    "category": "Kitchen",
+    "quantity": 26,
+    "price": 76.35,
+    "updated": "2026-08-21"
+  },
+  {
+    "sku": "KIT-1385",
+    "name": "Heavy-duty Toaster",
+    "category": "Kitchen",
+    "quantity": 91,
+    "price": 65.45,
+    "updated": "2026-09-08"
+  },
+  {
+    "sku": "KIT-1392",
+    "name": "Compact Blender",
+    "category": "Kitchen",
+    "quantity": 99,
+    "price": 197.6,
+    "updated": "2026-08-08"
+  },
+  {
+    "sku": "KIT-1399",
+    "name": "Lite Coffee grinder",
+    "category": "Kitchen",
+    "quantity": 87,
+    "price": 95.13,
+    "updated": "2026-07-27"
+  },
+  {
+    "sku": "KIT-1406",
+    "name": "Trail Air fryer",
+    "category": "Kitchen",
+    "quantity": 41,
+    "price": 169.5,
+    "updated": "2026-08-17"
+  },
+  {
+    "sku": "OFF-1413",
+    "name": "Folding Desk lamp",
+    "category": "Office",
+    "quantity": 13,
+    "price": 26.91,
+    "updated": "2026-09-09"
+  }
+]

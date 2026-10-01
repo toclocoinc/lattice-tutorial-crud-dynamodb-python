@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Products from DynamoDB</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@toclocoinc/lattice-grid@1.83.0/lattice-grid.min.css" integrity="sha384-2i16nZVKwviR2MGSw17fvJB0ZmiPo8qKw3f/kl7qQbKdylO12J5aeY5AZiQxz5PF" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/@toclocoinc/lattice-grid@1.83.0/lattice-grid.min.js" integrity="sha384-wAHel+HUzFAk4WTZB+wpLOl4HIB3tQiIE0yCmBXaT4uFG5aE97NfW4Wj+qAksxI2" crossorigin="anonymous"></script>
+  <style>
+    body { margin: 0; font-family: system-ui, sans-serif; }
+    header { padding: 12px 16px; border-bottom: 1px solid #ddd; display: flex; gap: 12px; align-items: baseline; }
+    header h1 { font-size: 18px; margin: 0; }
+    header button { padding: 6px 14px; }
+    header .spacer { margin-left: auto; }
+    #status { color: #666; }
+    main { display: flex; height: calc(100vh - 49px); }
+    #grid { flex: 1; min-width: 0; }
+    #form { width: 320px; border-left: 1px solid #ddd; padding: 12px; overflow: auto; }
+    #form:empty::before { content: 'Right-click a row and choose Edit in form, or press Add product.'; color: #888; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Products</h1>
+    <span id="status">Loading…</span>
+    <span class="spacer"></span>
+    <button id="add">Add product</button>
+    <button id="full">Full screen</button>
+  </header>
+  <main>
+    <div id="grid"></div>
+    <aside id="form"></aside>
+  </main>
+
+  <script>
+    // Paste the Function URL from the Lambda console here.
+    const FUNCTION_URL = 'https://xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.lambda-url.eu-west-2.on.aws/';
+
+    const status = document.getElementById('status');
+    const api = async (method, path = '', body) => {
+      const r = await fetch(FUNCTION_URL + path, {
+        method,
+        headers: body ? { 'Content-Type': 'application/json' } : {},
+        body: body ? JSON.stringify(body) : undefined,
+      });
+      if (!r.ok) throw new Error((await r.json().catch(() => ({}))).error || 'HTTP ' + r.status);
+      return r.status === 204 ? null : r.json();
+    };
+
+    const grid = LatticeGrid.createGrid(document.getElementById('grid'), {
+      rowKey: 'sku',
+      filterRow: true,
+      selection: 'single',
+      columns: [
+        { field: 'sku', title: 'SKU' },
+        { field: 'name', title: 'Product', edit: true },
+        { field: 'category', title: 'Category', edit: true },
+        { field: 'quantity', title: 'In stock', type: 'number', edit: true },
+        { field: 'price', title: 'Price', type: 'number', edit: true, format: { style: 'currency', currency: 'GBP', decimals: 2 } },
+        { field: 'updated', title: 'Updated', type: 'date' },
+      ],
+      rows: [],
+
+      // Inline editing with write-back. `commit` is called for every committed
+      // cell; the cell changes at once and the promise confirms it or puts the
+      // old value back. The form's Save goes through the same path, one call
+      // per changed field.
+      edit: {
+        commit: (write) => api('PATCH', '?sku=' + encodeURIComponent(write.key), { [write.colId]: write.value }),
+      },
+
+      // The same form as part 2, drawn inside the aside instead of over the grid.
+      // With cells editable, double-click belongs to the cell, so the form's own
+      // double-click trigger is off and the menu opens it instead.
+      rowForm: {
+        container: '#form',
+        trigger: false,
+        fields: [
+          { field: 'name', label: 'Product' },
+          { field: 'category', label: 'Category' },
+          { field: 'quantity', label: 'In stock' },
+          { field: 'price', label: 'Price' },
+        ],
+        create: (values) => api('POST', '', values),
+      },
+
+      contextMenu: (p, defaults) => [
+        ...defaults,
+        { separator: true },
+        { name: 'Edit in form', action: () => grid.form.open(p.key) },
+        {
+          name: 'Delete ' + p.data.name,
+          action: async () => {
+            if (!confirm('Delete ' + p.data.name + '?')) return;
+            await api('DELETE', '?sku=' + encodeURIComponent(p.key));
+            grid.rows.apply({ remove: [p.key] });
+            status.textContent = grid.rows.count() + ' products';
+          },
+        },
+      ],
+    });
+
+    document.getElementById('add').addEventListener('click', () => grid.form.openNew({ category: 'Office', quantity: 0 }));
+    document.getElementById('full').addEventListener('click', () => grid.maximise.toggle());
+    grid.on('form:saved', (e) => { status.textContent = grid.rows.count() + ' products' + (e.created ? ', one added' : ', one updated'); });
+    grid.on('form:error', (e) => { status.textContent = 'Could not save: ' + ((e.error && e.error.message) || e.error || 'unknown error'); });
+    grid.on('cell:reverted', (e) => { status.textContent = 'The server refused the change to ' + e.colId + (e.reason ? ': ' + e.reason : ''); });
+
+    api('GET')
+      .then((data) => { grid.rows.load(data.items); status.textContent = data.count + ' products'; })
+      .catch((err) => { status.textContent = 'Could not load: ' + err.message; });
+  </script>
+</body>
+</html>

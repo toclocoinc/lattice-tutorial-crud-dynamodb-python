@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Products from DynamoDB</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@toclocoinc/lattice-grid@1.83.0/lattice-grid.min.css" integrity="sha384-2i16nZVKwviR2MGSw17fvJB0ZmiPo8qKw3f/kl7qQbKdylO12J5aeY5AZiQxz5PF" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/@toclocoinc/lattice-grid@1.83.0/lattice-grid.min.js" integrity="sha384-wAHel+HUzFAk4WTZB+wpLOl4HIB3tQiIE0yCmBXaT4uFG5aE97NfW4Wj+qAksxI2" crossorigin="anonymous"></script>
+  <style>
+    body { margin: 0; font-family: system-ui, sans-serif; }
+    header { padding: 12px 16px; border-bottom: 1px solid #ddd; display: flex; gap: 16px; align-items: baseline; }
+    header h1 { font-size: 18px; margin: 0; }
+    #status { color: #666; }
+    #grid { height: calc(100vh - 49px); }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Products</h1>
+    <span id="status">Loading…</span>
+  </header>
+  <div id="grid"></div>
+
+  <script>
+    // Step 4: paste the Function URL from the Lambda console here.
+    const FUNCTION_URL = 'https://xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.lambda-url.eu-west-2.on.aws/';
+
+    const status = document.getElementById('status');
+
+    const grid = LatticeGrid.createGrid(document.getElementById('grid'), {
+      rowKey: 'sku',
+      filterRow: true,
+      columns: [
+        { field: 'sku', title: 'SKU' },
+        { field: 'name', title: 'Product' },
+        { field: 'category', title: 'Category' },
+        { field: 'quantity', title: 'In stock', type: 'number' },
+        { field: 'price', title: 'Price', type: 'number', format: { style: 'currency', currency: 'GBP', decimals: 2 } },
+        { field: 'updated', title: 'Updated', type: 'date' },
+      ],
+      rows: [],
+    });
+
+    fetch(FUNCTION_URL)
+      .then((r) => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+      .then((data) => {
+        grid.rows.load(data.items);
+        status.textContent = data.count + ' products from DynamoDB';
+      })
+      .catch((err) => { status.textContent = 'Could not load: ' + err.message; });
+  </script>
+</body>
+</html>

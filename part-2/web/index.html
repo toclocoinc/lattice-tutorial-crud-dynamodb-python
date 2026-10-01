@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Products from DynamoDB</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@toclocoinc/lattice-grid@1.83.0/lattice-grid.min.css" integrity="sha384-2i16nZVKwviR2MGSw17fvJB0ZmiPo8qKw3f/kl7qQbKdylO12J5aeY5AZiQxz5PF" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/@toclocoinc/lattice-grid@1.83.0/lattice-grid.min.js" integrity="sha384-wAHel+HUzFAk4WTZB+wpLOl4HIB3tQiIE0yCmBXaT4uFG5aE97NfW4Wj+qAksxI2" crossorigin="anonymous"></script>
+  <style>
+    body { margin: 0; font-family: system-ui, sans-serif; }
+    header { padding: 12px 16px; border-bottom: 1px solid #ddd; display: flex; gap: 16px; align-items: baseline; }
+    header h1 { font-size: 18px; margin: 0; }
+    header button { margin-left: auto; padding: 6px 14px; }
+    #status { color: #666; }
+    #grid { height: calc(100vh - 49px); }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Products</h1>
+    <span id="status">Loading…</span>
+    <button id="add">Add product</button>
+  </header>
+  <div id="grid"></div>
+
+  <script>
+    // Paste the Function URL from the Lambda console here.
+    const FUNCTION_URL = 'https://xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.lambda-url.eu-west-2.on.aws/';
+
+    const status = document.getElementById('status');
+    const api = async (method, path = '', body) => {
+      const r = await fetch(FUNCTION_URL + path, {
+        method,
+        headers: body ? { 'Content-Type': 'application/json' } : {},
+        body: body ? JSON.stringify(body) : undefined,
+      });
+      if (!r.ok) throw new Error((await r.json().catch(() => ({}))).error || 'HTTP ' + r.status);
+      return r.status === 204 ? null : r.json();
+    };
+
+    const grid = LatticeGrid.createGrid(document.getElementById('grid'), {
+      rowKey: 'sku',
+      filterRow: true,
+      selection: 'single',
+      columns: [
+        { field: 'sku', title: 'SKU' },
+        { field: 'name', title: 'Product' },
+        { field: 'category', title: 'Category' },
+        { field: 'quantity', title: 'In stock', type: 'number' },
+        { field: 'price', title: 'Price', type: 'number', format: { style: 'currency', currency: 'GBP', decimals: 2 } },
+        { field: 'updated', title: 'Updated', type: 'date' },
+      ],
+      rows: [],
+
+      // The built-in form. `create` is called with the form's values when a NEW
+      // row is saved; whatever it returns (the product as the server stored it,
+      // sku included) becomes the new row.
+      rowForm: {
+        fields: [
+          { field: 'name', label: 'Product' },
+          { field: 'category', label: 'Category' },
+          { field: 'quantity', label: 'In stock' },
+          { field: 'price', label: 'Price' },
+        ],
+        create: (values) => api('POST', '', values),
+      },
+
+      // The right-click menu: the built-in items, then Delete for this row.
+      contextMenu: (p, defaults) => [
+        ...defaults,
+        { separator: true },
+        {
+          name: 'Delete ' + p.data.name,
+          action: async () => {
+            if (!confirm('Delete ' + p.data.name + '?')) return;
+            await api('DELETE', '?sku=' + encodeURIComponent(p.key));
+            grid.rows.apply({ remove: [p.key] });
+            status.textContent = grid.rows.count() + ' products';
+          },
+        },
+      ],
+    });
+
+    document.getElementById('add').addEventListener('click', () => grid.form.openNew({ category: 'Office', quantity: 0 }));
+    grid.on('form:saved', (e) => { if (e.created) status.textContent = grid.rows.count() + ' products'; });
+    grid.on('form:error', (e) => { status.textContent = 'Could not save: ' + ((e.error && e.error.message) || e.error || 'unknown error'); });
+
+    api('GET')
+      .then((data) => { grid.rows.load(data.items); status.textContent = data.count + ' products'; })
+      .catch((err) => { status.textContent = 'Could not load: ' + err.message; });
+  </script>
+</body>
+</html>

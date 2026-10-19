@@ -126,6 +126,9 @@ def lambda_handler(event, context):
             sets.append(f'#{field} = :{field}')
         if not sets:
             return response(400, {'error': 'Nothing to change'})
+        # A product always has a name: refuse a blank one before anything is written.
+        if 'name' in changes and not str(changes['name'] or '').strip():
+            return response(400, {'error': 'name is required'})
         names['#updated'] = 'updated'
         values[':updated'] = today()
         sets.append('#updated = :updated')

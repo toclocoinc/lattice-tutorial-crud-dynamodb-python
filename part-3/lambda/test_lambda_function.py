@@ -141,6 +141,13 @@ class PatchTest(StubbedTest):
         self.assertEqual(result['statusCode'], 400)
         self.assertEqual(json.loads(result['body'])['error'], 'Nothing to change')
 
+    def test_patch_with_blank_name_is_rejected_and_writes_nothing(self):
+        for blank in ('', '   ', None):
+            result = lf.lambda_handler(http_event('PATCH', {'name': blank}, {'sku': 'SKU-1'}), None)
+            self.assertEqual(result['statusCode'], 400)
+            self.assertEqual(json.loads(result['body']), {'error': 'name is required'})
+        self.stubber.assert_no_pending_responses()
+
     def test_patch_without_sku_query_param_is_rejected(self):
         result = lf.lambda_handler(http_event('PATCH', body={'quantity': 1}, query={}), None)
         self.assertEqual(result['statusCode'], 400)
